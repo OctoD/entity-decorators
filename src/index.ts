@@ -1,14 +1,10 @@
 import IClass from './types/IClass';
 import MapArrayError from './errors/MapArrayError';
-import { validateEntity } from './helpers/validateEntity';
 import IDecoratedEntity from './types/IDecoratedEntity';
-
-export function build<T extends object>(Type: IDecoratedEntity<T>, ... args: unknown[]): T {
-  return validateEntity(Type, new Type(...args));
-}
+import { build } from './helpers/build';
 
 export function map<T extends object>(Type: IClass<T>, item: unknown): T {
-  return build(Type as IDecoratedEntity<T>);
+  return build(Type as IDecoratedEntity<T>, item as T);
 }
 
 export function mapArrayOf<T extends object>(Type: IClass<T>, items: unknown[]): T[] {
@@ -16,7 +12,7 @@ export function mapArrayOf<T extends object>(Type: IClass<T>, items: unknown[]):
     throw new MapArrayError(Type, items);
   }
   
-  return items.map(item => build(Type as IDecoratedEntity<T>, item));
+  return items.map(item => build(Type as IDecoratedEntity<T>, item as T));
 }
 
 export {
