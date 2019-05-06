@@ -2,6 +2,6 @@ import IConfigurationDefaults from '../types/IConfigurationDefaults';
 
 import { IMapperFunctionArg } from '../types/MapperFunction';
 
-export default function shouldThrowRequired<T extends IConfigurationDefaults<Z>, Z>(arg: IMapperFunctionArg<T, Z>) {
+export default function shouldThrowRequired<T extends IConfigurationDefaults>(arg: IMapperFunctionArg<T>) {
   return arg.config.required && typeof arg.value === undefined;
 }
