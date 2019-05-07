@@ -1,25 +1,23 @@
+import ToString from './decorators/ToString';
+import ToNumber from './decorators/ToNumber';
+import ToClass from './decorators/ToClass';
+import map from './helpers/map';
+import mapArrayOf from './helpers/mapArrayOf';
 import IClass from './types/IClass';
-import MapArrayError from './errors/MapArrayError';
-import IDecoratedEntity from './types/IDecoratedEntity';
-import { build } from './helpers/build';
-
-export function map<T extends object>(Type: IClass<T>, item: unknown): T {
-  return build(Type as IDecoratedEntity<T>, item as T);
-}
-
-export function mapArrayOf<T extends object>(Type: IClass<T>, items: unknown[]): T[] {
-  if (Object.prototype.toString.call(items) !== '[object Array]') {
-    throw new MapArrayError(Type, items);
-  }
-  
-  return items.map(item => build(Type as IDecoratedEntity<T>, item as T));
-}
 
 export {
+  map,
+  mapArrayOf,
   IClass,
+  ToClass,
+  ToNumber,
+  ToString,
 }
 
 export default {
   map,
   mapArrayOf,
+  ToClass,
+  ToNumber,
+  ToString,
 }
