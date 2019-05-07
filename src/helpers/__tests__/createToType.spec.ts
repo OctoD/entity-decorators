@@ -1,6 +1,7 @@
 import createToType from '../createToType';
 import IDecoratedEntity from '../../types/IDecoratedEntity';
 import { IFullyDecoratedProperty } from '../../types/IDecoratedProperty';
+import getClassDecorations from '../getClassDecorations';
 
 describe(`createToType`, () => {
   it(`Creates a property decorator`, () => {
@@ -19,10 +20,10 @@ describe(`createToType`, () => {
       foo!: string;
     };
 
-    expect(Foo).toHaveProperty(`decoratedMembers`);
+    expect(getClassDecorations(Foo)).toHaveProperty(`decoratedMembers`);
 
     const instance = new Foo();
-    const decoratedProperty = (Foo as IDecoratedEntity).decoratedMembers.get(`foo`)! as IFullyDecoratedProperty;
+    const decoratedProperty = getClassDecorations(Foo).decoratedMembers.get(`foo`)! as IFullyDecoratedProperty;
 
     expect(instance.foo).toBeUndefined();
     expect(decoratedProperty).toBeDefined();

@@ -1,5 +1,6 @@
 import IDecoratedEntity from '../types/IDecoratedEntity';
 import IDecoratedProperty from '../types/IDecoratedProperty';
+import getClassDecorations from './getClassDecorations';
 
 /**
  * @export
@@ -8,8 +9,8 @@ import IDecoratedProperty from '../types/IDecoratedProperty';
  * @returns {IDecoratedProperty}
  */
 export default function createDecoratedProperty(target: Object, key: string | symbol): IDecoratedProperty {
-  const decoratedEntity = target.constructor as IDecoratedEntity;
-  
+  const decoratedEntity = getClassDecorations(target.constructor as any);
+
   if (!decoratedEntity.decoratedMembers) {
     decoratedEntity.decoratedMembers = new Map();
   }

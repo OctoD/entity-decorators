@@ -4,7 +4,7 @@ import IDecoratedEntity from './IDecoratedEntity';
 export interface IMapperFunctionArg<TConfiguration extends IConfigurationDefaults> {
   config: TConfiguration;
   entity: IDecoratedEntity;
-  key: string;
+  key: string | symbol;
   value: unknown;
 }
 

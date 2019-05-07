@@ -1,4 +1,5 @@
 import createDecoratedProperty from '../createDecoratedProperty';
+import getClassDecorations from '../getClassDecorations';
 
 describe(`createDecoratedProperty`, () => {
   it(`Creates a decoratedMembers property on a class constructor if is not defined`, () => {
@@ -6,8 +7,8 @@ describe(`createDecoratedProperty`, () => {
 
     createDecoratedProperty(instance, `foo`);
 
-    expect(instance.constructor).toHaveProperty(`decoratedMembers`);
-    expect((instance.constructor as any).decoratedMembers instanceof Map).toBeTruthy();
+    expect(getClassDecorations(instance.constructor as any)).toHaveProperty(`decoratedMembers`);
+    expect(getClassDecorations(instance.constructor as any).decoratedMembers instanceof Map).toBeTruthy();
   });
 
   it(`Creates a decorated property in decoratedMembers on a class constructor if is not defined`, () => {
@@ -15,7 +16,7 @@ describe(`createDecoratedProperty`, () => {
 
     createDecoratedProperty(instance, `foo`);
 
-    expect((instance.constructor as any).decoratedMembers.get(`foo`)).toBeDefined();
-    expect((instance.constructor as any).decoratedMembers.get(`foo`)).toHaveProperty(`key`);
+    expect(getClassDecorations(instance.constructor as any).decoratedMembers.get(`foo`)).toBeDefined();
+    expect(getClassDecorations(instance.constructor as any).decoratedMembers.get(`foo`)).toHaveProperty(`key`);
   });
 });

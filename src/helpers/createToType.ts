@@ -3,6 +3,7 @@ import createDecoratedProperty from './createDecoratedProperty';
 import { IDecoratedPropertyWithMapper } from '../types/IDecoratedProperty';
 import IConfigurationDefaults from '../types/IConfigurationDefaults';
 import IDecoratedEntity from '../types/IDecoratedEntity';
+import { decorationsToken } from './getClassDecorations';
 
 export default function createToType<TConfiguration extends IConfigurationDefaults = IConfigurationDefaults>(mapper: MapperFunction<TConfiguration>): (config?: TConfiguration) => PropertyDecorator {
   return function(config: TConfiguration = <TConfiguration> {}) {
@@ -23,7 +24,7 @@ export default function createToType<TConfiguration extends IConfigurationDefaul
 
       if (config.strict !== undefined) {
         decoratedProperty.strict = config.strict;
-      } else if ((target.constructor as IDecoratedEntity).strict) {
+      } else if ((target.constructor as IDecoratedEntity)[decorationsToken].strict) {
         decoratedProperty.strict = true;
       }
 
