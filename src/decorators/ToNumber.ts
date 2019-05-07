@@ -11,7 +11,11 @@ export interface IToNumberConfiguration extends IConfigurationDefaults {
 }
 
 export default createToType<IToNumberConfiguration>(arg => {
-  if (arg.config.strict && typeof arg.value !== 'number') {
+  if (arg.config.strict && !arg.config.nullable && typeof arg.value !== 'number') {
+    throw new StrictTypeError(arg.value, Number);
+  }
+
+  if (arg.config.strict && arg.config.nullable && arg.value !== null && typeof arg.value !== 'number') {
     throw new StrictTypeError(arg.value, Number);
   }
 

@@ -1,14 +1,12 @@
 import IMapper from './IMapper';
+import IConfigurationDefaults from './IConfigurationDefaults';
 
 export default interface IDecoratedProperty {
   key: string | symbol;
-  nullable?: boolean;
-  required?: boolean;
-  strict?: boolean;
 }
 
 export interface IDecoratedPropertyWithMapper extends IDecoratedProperty {
-  mapper: IMapper;
+  mapper: IMapper<IConfigurationDefaults>;
 }
 
 export interface IFullyDecoratedProperty extends 

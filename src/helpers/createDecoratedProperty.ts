@@ -1,4 +1,3 @@
-import IDecoratedEntity from '../types/IDecoratedEntity';
 import IDecoratedProperty from '../types/IDecoratedProperty';
 import getClassDecorations from './getClassDecorations';
 

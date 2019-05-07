@@ -14,18 +14,20 @@ export default function createToType<TConfiguration extends IConfigurationDefaul
         throw new Error(`Key ${String(key)} is already decorated with a mapper decorator`);
       }
 
-      if (config.nullable !== undefined && decoratedProperty.nullable === undefined) {
-        decoratedProperty.nullable = config.nullable;
+      if (config.nullable === undefined) {
+        config.nullable = false;
       }
 
-      if (config.required !== undefined && decoratedProperty.required === undefined) {
-        decoratedProperty.required = config.required;
+      if (config.required === undefined) {
+        config.required = false;
       }
 
-      if (config.strict !== undefined) {
-        decoratedProperty.strict = config.strict;
-      } else if ((target.constructor as IDecoratedEntity)[decorationsToken].strict) {
-        decoratedProperty.strict = true;
+      if (config.strict === undefined) {
+        config.strict = false;
+      }
+
+      if ((target.constructor as IDecoratedEntity)[decorationsToken].strict) {
+        config.strict = true;
       }
 
       decoratedProperty.mapper = {

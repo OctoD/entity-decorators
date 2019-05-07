@@ -2,6 +2,7 @@ import createToType from '../createToType';
 import IDecoratedEntity from '../../types/IDecoratedEntity';
 import { IFullyDecoratedProperty } from '../../types/IDecoratedProperty';
 import getClassDecorations from '../getClassDecorations';
+import IConfigurationDefaults from '../../types/IConfigurationDefaults';
 
 describe(`createToType`, () => {
   it(`Creates a property decorator`, () => {
@@ -28,11 +29,11 @@ describe(`createToType`, () => {
     expect(instance.foo).toBeUndefined();
     expect(decoratedProperty).toBeDefined();
     expect(decoratedProperty.key).toBe(`foo`);
-    expect(decoratedProperty.nullable).toBeTruthy();
-    expect(decoratedProperty.required).toBeTruthy();
-    expect(decoratedProperty.strict).toBeTruthy();
     expect(decoratedProperty.mapper).toBeDefined();
     expect(decoratedProperty.mapper.config).toBeDefined();
+    expect(decoratedProperty.mapper.config.nullable).toBeTruthy();
+    expect(decoratedProperty.mapper.config.required).toBeTruthy();
+    expect(decoratedProperty.mapper.config.strict).toBeTruthy();
     expect(decoratedProperty.mapper.entity).toBeDefined();
     expect(decoratedProperty.mapper.mapper).toBeDefined();
     expect(typeof decoratedProperty.mapper.mapper).toBe(`function`);

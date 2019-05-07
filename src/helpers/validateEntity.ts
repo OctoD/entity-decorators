@@ -11,9 +11,7 @@ export function validateEntity<T extends object>(EntityConstructor: IClass<T>, e
     const value = (entity as any)[key];
     
     (entity as any)[key] = (property as IFullyDecoratedProperty).mapper.mapper({
-      config: Object.assign((property as IFullyDecoratedProperty).mapper.config, {
-        strict: decorations.strict,
-      }),
+      config: (property as IFullyDecoratedProperty).mapper.config,
       entity: EntityConstructor as IDecoratedEntity,
       key,
       value,
