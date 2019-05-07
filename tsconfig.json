@@ -3,6 +3,7 @@
   "compilerOptions": {
     "declaration": true,
     "declarationDir": "dist",
+    "strict": true,
     "outDir": "dist",
     "target": "es5",
     "lib": [
