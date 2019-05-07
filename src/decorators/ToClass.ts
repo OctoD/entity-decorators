@@ -11,7 +11,11 @@ export interface IToClassConfiguration extends IConfigurationDefaults {
 }
 
 export default createToType<IToClassConfiguration>(arg => {
-  if (arg.config.strict && typeof arg.value !== 'object') {
+  if (arg.config.strict && !arg.config.nullable && typeof arg.value !== 'object') {
+    throw new StrictTypeError(arg.value, arg.config.Type);
+  }
+
+  if (arg.config.strict && arg.config.nullable && arg.value !== null && typeof arg.value !== 'object') {
     throw new StrictTypeError(arg.value, arg.config.Type);
   }
 
