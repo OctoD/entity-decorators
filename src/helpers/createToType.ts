@@ -4,7 +4,7 @@ import { IDecoratedPropertyWithMapper } from '../types/IDecoratedProperty';
 import IConfigurationDefaults from '../types/IConfigurationDefaults';
 import IDecoratedEntity from '../types/IDecoratedEntity';
 
-export default function createToType<TConfiguration extends IConfigurationDefaults = IConfigurationDefaults>(mapper: MapperFunction<TConfiguration>): () => PropertyDecorator {
+export default function createToType<TConfiguration extends IConfigurationDefaults = IConfigurationDefaults>(mapper: MapperFunction<TConfiguration>): (config?: TConfiguration) => PropertyDecorator {
   return function(config: TConfiguration = <TConfiguration> {}) {
     return function(target, key) {
       const decoratedProperty = createDecoratedProperty(target, key) as IDecoratedPropertyWithMapper;
@@ -21,14 +21,16 @@ export default function createToType<TConfiguration extends IConfigurationDefaul
         decoratedProperty.required = config.required;
       }
 
-      if ((target.constructor as IDecoratedEntity).strict) {
+      if (config.strict !== undefined) {
+        decoratedProperty.strict = config.strict;
+      } else if ((target.constructor as IDecoratedEntity).strict) {
         decoratedProperty.strict = true;
       }
 
       decoratedProperty.mapper = {
         entity: target.constructor as IDecoratedEntity,
         config,
-        mapper,
+        mapper: mapper as any,
       };
     }
   }

@@ -20,5 +20,5 @@ export default function createDecoratedProperty(target: Object, key: string | sy
     });
   }
 
-  return decoratedEntity.decoratedMembers.get(key);
+  return decoratedEntity.decoratedMembers.get(key)!;
 }
