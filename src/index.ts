@@ -4,11 +4,13 @@ import ToClass from './decorators/ToClass';
 import map from './helpers/map';
 import mapArrayOf from './helpers/mapArrayOf';
 import IClass from './types/IClass';
+import Strict from './decorators/Strict';
 
 export {
   map,
   mapArrayOf,
   IClass,
+  Strict,
   ToClass,
   ToNumber,
   ToString,
@@ -17,6 +19,7 @@ export {
 export default {
   map,
   mapArrayOf,
+  Strict,
   ToClass,
   ToNumber,
   ToString,
