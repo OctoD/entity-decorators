@@ -1,4 +1,5 @@
 import canHandleNull from '../canHandleNull';
+import { decorationsToken } from '../getClassDecorations';
 
 describe(`canHandleNull`, () => {
   test(`It checks if a value is null and the member is nullable`, () => {
@@ -7,8 +8,8 @@ describe(`canHandleNull`, () => {
         nullable: false,
       },
       entity: class {
-        static decoratedMembers = new Map();
-      },
+        static [decorationsToken] = new Map();
+      } as any,
       key: ``,
       value: null
     })).toBeFalsy();
@@ -18,8 +19,8 @@ describe(`canHandleNull`, () => {
         nullable: true,
       },
       entity: class {
-        static decoratedMembers = new Map();
-      },
+        static [decorationsToken] = new Map();
+      } as any,
       key: ``,
       value: null
     })).toBeTruthy();

@@ -1,4 +1,5 @@
 import canHandleUndefined from '../canHandleUndefined';
+import { decorationsToken } from '../getClassDecorations';
 
 describe(`canHandleUndefined`, () => {
   test(`It checks if a value is undefined and the member is nullable`, () => {
@@ -7,8 +8,8 @@ describe(`canHandleUndefined`, () => {
         nullable: false,
       },
       entity: class {
-        static decoratedMembers = new Map();
-      },
+        static [decorationsToken] = new Map();
+      } as any,
       key: ``,
       value: undefined
     })).toBeFalsy();
@@ -18,8 +19,8 @@ describe(`canHandleUndefined`, () => {
         nullable: true,
       },
       entity: class {
-        static decoratedMembers = new Map();
-      },
+        static [decorationsToken] = new Map();
+      } as any,
       key: ``,
       value: undefined
     })).toBeTruthy();

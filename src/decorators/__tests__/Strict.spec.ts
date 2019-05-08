@@ -1,4 +1,5 @@
 import Strict from '../Strict';
+import { decorationsToken } from '../../helpers/getClassDecorations';
 
 describe(`Strict`, () => {
   it(`Decorates a class`, () => {
@@ -8,6 +9,6 @@ describe(`Strict`, () => {
     }
     
     expect((Foo as any)).toBeDefined();
-    expect((Foo as any).strict).toBeTruthy();
+    expect((Foo as any)[decorationsToken].strict).toBeTruthy();
   });
 });

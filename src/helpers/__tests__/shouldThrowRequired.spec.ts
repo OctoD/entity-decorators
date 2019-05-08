@@ -1,4 +1,5 @@
 import shouldThrowRequired from '../shouldThrowRequired';
+import { decorationsToken } from '../getClassDecorations';
 
 describe(`shouldThrowRequired`, () => {
   it(`Suggest if an error should be thrown if a property is marked as required an it's value is undefined`, () => {
@@ -8,8 +9,8 @@ describe(`shouldThrowRequired`, () => {
           required: true,
         },
         entity: class {
-          static decoratedMembers = new Map();
-        },
+          static [decorationsToken] = new Map();
+        } as any,
         key: `foo`,
         value: undefined,
       })
@@ -21,8 +22,8 @@ describe(`shouldThrowRequired`, () => {
           required: true,
         },
         entity: class {
-          static decoratedMembers = new Map();
-        },
+          static [decorationsToken] = new Map();
+        } as any,
         key: `foo`,
         value: null,
       })
@@ -34,8 +35,8 @@ describe(`shouldThrowRequired`, () => {
           required: false,
         },
         entity: class {
-          static decoratedMembers = new Map();
-        },
+          static [decorationsToken] = new Map();
+        } as any,
         key: `foo`,
         value: undefined,
       })
