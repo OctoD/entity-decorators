@@ -22,6 +22,10 @@ This is a class decorator, enforces a strict validation upon class members
 
 This is a member decorator which converts a value to it's bitwise value
 
+#### ToDate
+
+This is a member decorator which converts a value to a Date
+
 #### ToClass
 
 This is a member decorator which converts a nested object to a decorated class
