@@ -1,4 +1,4 @@
-# HttpDecorators
+# Entity decorators
 
 TypeScript entities isomorphic HTTP decorators
 
