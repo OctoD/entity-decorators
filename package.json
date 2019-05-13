@@ -4,6 +4,7 @@
   "description": "TypeScript isomorphic entities decorators",
   "main": "dist/index.js",
   "scripts": {
+    "prepublishOnly": "tsc -p .",
     "test": "jest"
   },
   "repository": {

@@ -1,0 +1,15 @@
+coverage
+
+src
+
+__mocks__
+
+__tests__
+
+.travis.yml
+
+codecov.yml
+
+jest.config.js
+
+tsconfig.json
