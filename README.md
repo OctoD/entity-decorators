@@ -18,6 +18,10 @@ yarn add entity-decorators
 
 This is a class decorator, enforces a strict validation upon class members
 
+#### ToArrayOf
+
+This is a member decorator which converts an array of values to another one
+
 #### ToBoolean
 
 This is a member decorator which converts a value to it's bitwise value

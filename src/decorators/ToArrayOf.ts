@@ -2,6 +2,7 @@ import createToType from '../helpers/createToType';
 import IClass from '../types/IClass';
 import IConfigurationDefaults from '../types/IConfigurationDefaults';
 import StrictTypeError from '../errors/StrictTypeError';
+import { validateEntity } from '../helpers/validateEntity';
 
 export interface IToArrayOfConfig extends IConfigurationDefaults {
 
@@ -31,6 +32,7 @@ export default function ToArrayOf(Type: IClass, config?: IToArrayOfConfig): Prop
         return [];
       }
 
+      return arg.value.map(value => validateEntity(Type, value));
     })(config)(object, key);
   }
 }
