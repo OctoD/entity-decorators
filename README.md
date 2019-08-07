@@ -1,6 +1,9 @@
-# Entity decorators
+Entity decorators
+=================
 
-TypeScript entities decorators
+[![Build Status](https://travis-ci.org/OctoD/entity-decorators.svg?branch=master)](https://travis-ci.org/OctoD/entity-decorators)
+
+TypeScript entities decorators.
 
 ## Install
 
